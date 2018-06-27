@@ -10,29 +10,63 @@
     <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.0-beta.5/dist/g2.min.js"></script>
   </head>
   <body>
-    <!-- 创建图表容器 -->
-<!--     <div id="c1"></div>
-    <script>
-      const data = [
-        { genre: 'Sports', sold: 275 },
-        { genre: 'Strategy', sold: 115 },
-        { genre: 'Action', sold: 120 },
-        { genre: 'Shooter', sold: 350 },
-        { genre: 'Other', sold: 150 }
-      ]; // G2 对数据源格式的要求，仅仅是 JSON 数组，数组的每个元素是一个标准 JSON 对象。
-      // Step 1: 创建 Chart 对象
-      const chart = new G2.Chart({
-        container: 'c1', // 指定图表容器 ID
-        width : 600, // 指定图表宽度
-        height : 300 // 指定图表高度
-      });
-      // Step 2: 载入数据源
-      chart.source(data);
-      // Step 3：创建图形语法，绘制柱状图，由 genre 和 sold 两个属性决定图形位置，genre 映射至 x 轴，sold 映射至 y 轴
-      chart.interval().position('genre*sold').color('genre')
-      // Step 4: 渲染图表
-      chart.render();
-    </script> -->
+   <div id="mountNode"></div>
+<script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.2.0-beta.5/dist/g2.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.8.9/dist/data-set.min.js"></script>
+<script>
+var data = [{
+  year: '2018.1',
+  value: 1
+}, {
+  year: '2018.2',
+  value: 2
+}, {
+  year: '2018.3',
+  value: 3
+}, {
+  year: '2018.4',
+  value: 5
+}, {
+  year: '2018.5',
+  value: 7
+}, {
+  year: '2018.6',
+  value: 10
+}, {
+  year: '2018.7',
+  value: 11
+}, {
+  year: '2018.8',
+  value: 12
+}, {
+  year: '2099.12',
+  value: 100
+}];
+var chart = new G2.Chart({
+  container: 'mountNode',
+  forceFit: true,
+  height: window.innerHeight
+});
+chart.source(data);
+chart.scale('value', {
+  min: 0
+});
+chart.scale('year', {
+  range: [0, 1]
+});
+chart.tooltip({
+  crosshairs: {
+    type: 'line'
+  }
+});
+chart.line().position('year*value');
+chart.point().position('year*value').size(4).shape('circle').style({
+  stroke: '#fff',
+  lineWidth: 1
+});
+chart.render();
+</script>
     <h3 style="coler:blue">花自飘零水自流，一种相思，两处闲愁，此情无计可消愁，才下眉头，却上心头。</h3>
   </body>
 </html> 
